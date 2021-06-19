@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="row text-center mt-2">
+        <h2>Employee List</h2>
+    </div>
+    <div class="row employeeFormData">
+        <div class="col-md-10">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <input type="text" matInput placeholder="Search" [formControl]="namecontrol" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let item of filteredOptions | async" [value]="item.name">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="Search" matInput [formControl]="addresscontrol" [matAutocomplete]="auto1">
+                    <mat-autocomplete #auto1="matAutocomplete">
+                        <mat-option *ngFor="let item of filteredOptionsAddress | async" [value]="item.address">
+                            {{item.address.street}},{{item.address.city}},{{item.address.city}},{{item.address.zipcode}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="Search" [formControl]="companycontrol" matInput [matAutocomplete]="auto2">
+                    <mat-autocomplete #auto2="matAutocomplete">
+                        <mat-option *ngFor="let item of filteredOptionsCompany | async" [value]="item.company.name">
+                            {{item.company.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <button class="addFormBtn" mat-raised-button color="primary" type="button"
+                (click)="openDialog({},'Add')">Add</button>
+        </div>
+    </div>
+
+    <div class="row employeedata mt-3" *ngIf="employeeData.length">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of employeeData; let i=index;">
+                    <td>{{item.name}}</td>
+                    <td>{{item.address.street}},{{item.address.city}},{{item.address.city}},{{item.address.zipcode}}
+                    </td>
+                    <td>{{item.company.name}}</td>
+                    <td><button class="btnEditEmployee" mat-raised-button color="accent"
+                            (click)="openDialog(item,'Edit')">Edit</button><button mat-raised-button color="primary"
+                            (click)="deleteEmployeeData(i)" class="btnDeleteEmployee">Delete</button>
+                    </td>
+                </tr>
+                <tr *ngIf="employeeData.length==0">
+                    No Data Found.
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row text-center mt-2" *ngIf="deletedEmployeeData.length">
+        <h2>Deleted Employee List</h2>
+        <div class="employeedata mt-3">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Company</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of deletedEmployeeData; let i=index;">
+                        <td>{{item.name}}</td>
+                        <td>{{item.address.street}},{{item.address.city}},{{item.address.city}},{{item.address.zipcode}}
+                        </td>
+                        <td>{{item.company.name}}</td>
+                        <td><button mat-raised-button color="primary" class="btnRestoreEmployee"
+                                (click)="restoreEmployeeData(i)">Restore</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div>
+    <h1 mat-dialog-title>{{local_data?.action}} Employee</h1>
+    <mat-dialog-content>
+        <form #EmployeeForm="ngForm">
+            <div class="row">
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        <input placeholder="Name" matInput id="Name" name="Name" #Name="ngModel"
+                            [(ngModel)]="local_data.data.name">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        <input placeholder="Company" matInput id="company" name="company" #company="ngModel"
+                            [(ngModel)]="local_data.data.company.name">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <h4><b>Address Details</b></h4>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        <input placeholder="City" matInput id="addressCity" name="addressCity" #addressCity="ngModel"
+                            [(ngModel)]="local_data.data.address.city">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        <input placeholder="Suite" matInput id="addressSuite" name="addressSuite"
+                            #addressSuite="ngModel" [(ngModel)]="local_data.data.address.suite">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        <input placeholder="Street" matInput id="addressStreet" name="addressStreet"
+                            #addressStreet="ngModel" [(ngModel)]="local_data.data.address.street">
+                    </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                    <mat-form-field class="example-full-width">
+                        <input placeholder="Zipcode" matInput id="addressZipcode" name="addressZipcode"
+                            #addressZipcode="ngModel" [(ngModel)]="local_data.data.address.zipcode">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </mat-dialog-content>
+    <div mat-dialog-actions>
+        <div class="row controlBtn">
+            <div class="col-md-11 text-right">
+                <button mat-raised-button color="primary" (click)="doAction()">Save</button>&nbsp;&nbsp;
+                <button mat-button (click)="closeDialog()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

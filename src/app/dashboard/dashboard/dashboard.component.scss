@@ -1,0 +1,37 @@
+.employeeFormData {
+
+    button {
+        float: right;
+    }
+
+    input:first-child {
+        margin-right: 15px;
+    }
+
+    input {
+        margin-right: 20px;
+    }
+}
+
+table.table.table-bordered {
+    text-align: center;
+}
+
+.row>* {
+    padding: 0 !important;
+}
+
+.example-form {
+    width: 100%;
+}
+
+
+.mat-form-field {
+    width: 31%;
+    margin-right: 21px;
+}
+
+.table button {
+    margin-left: 20px;
+}
+
